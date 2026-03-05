@@ -1,0 +1,207 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  color: #111;
+  background-color: #fae4cf;
+}
+
+h1, h2, h3 { font-family: 'Georgia', serif; }
+
+#heroOrderBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #816241;
+  color: gold;
+  text-decoration: none;
+  border-radius: 5px;
+  position:relative;
+  top:370px;
+  left:70px;
+  transition: 0.3s;
+}
+
+#heroorderBtn:hover{size:30%+}
+.btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #816241;
+  color: gold;
+  text-decoration: none;
+  border-radius: 5px;
+  position:relative;
+  transition: 0.3s;
+}
+
+.btn:hover { background-color: rgb(182, 249, 250); color: #111; size:20% }
+
+.hero {
+  background: url('images/noir_logo.png') center/cover no-repeat;
+  background-color:black;
+  padding-top:0px;
+  padding-bottom: 200px;
+  height:50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: gold;
+}
+
+.hero-content h1 { font-size: 3em; margin-bottom: 10px; }
+.hero-content h2{padding-top:0%;
+position:relative;
+top:-30%;}
+.hero-content p { 
+  font-size: 1.5em; 
+  margin-bottom: 20px; 
+  position: relative; 
+  top:270px;
+  left:120px; }
+
+.products, .seasonal-offers, .testimonials {
+  padding: 50px 10% 20px 10%;
+  text-align: center;
+}
+
+.product-grid, .offer-grid, .testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.product img, .offer img { width: 100%; border-radius: 10px; }
+
+.testimonials .testimonial {
+  background-color: #111;
+  color: gold;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  background-color: #111;
+  color: gold;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;   /* controls size properly */
+  width: auto;    /* keeps proportions */
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: gold;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #816241;
+}
+
+/* ================= SEARCH ================= */
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#searchInput {
+  padding: 8px 12px;
+  border-radius: 4px 0 0 4px;
+  border: none;
+  width: 220px;
+  outline: none;
+}
+
+#searchBtn {
+  padding: 8px 12px;
+  border: none;
+  background-color: #816241;
+  color: gold;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+#searchBtn:hover {
+  background-color: gold;
+  color: #111;
+}
+
+/* Search Dropdown */
+.search-results {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  color: #111;
+  border-radius: 4px;
+  display: none;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.search-results div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background-color: #fae4cf;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 22px;
+}
+footer {
+  padding: 30px 20px;
+  background-color: #111;
+  color: gold;
+  text-align: center;
+}
+footer input { padding: 10px; margin-right: 10px; border-radius: 5px; border: none; }
+footer button { padding: 10px 20px; border: none; border-radius: 5px; background-color: gold; color: #111; cursor: pointer; }
