@@ -1,20 +1,16 @@
-// ============================
-// CONFIG
-// ============================
+// script.js
 
-const whatsappNumber = "2567XXXXXXXX"; // replace with your number
+const whatsappNumber = "256743340581"; // WhatsApp number
+const productGrid = document.getElementById('productGrid');
 
-const products = PRODUCTS;
-  { id: 1, name: "YSL Libre Intense", category: "Women", brand: "YSL", price: 450000, size: "90ml", image: "images/libre_yves.jpg", description: "A bold floral fragrance blending lavender, orange blossom and warm vanilla.", active: true, featured: true },
-  { id: 2, name: "Black Opium", category: "Women", brand: "YSL", price: 420000, size: "90ml", image: "images/blackOpium_yves.jpg", description: "Seductive coffee-infused perfume with vanilla and white florals.", active: true, featured: true },
-  { id: 3, name: "Montblanc Explorer", category: "Men", brand: "Montblanc", price: 380000, size: "100ml", image: "images/montblanc.jpg", description: "Woody aromatic scent inspired by adventure and exploration.", active: true, featured: true },
-  { id: 4, name: "Versace Eros Flame", category: "Men", brand: "Versace", price: 400000, size: "100ml", image: "images/eros_flame.jpg", description: "Vibrant citrus opening with spicy and woody masculine depth.", active: true, featured: true }
+// Static frontend products (can be updated by frontend team)
+const frontendProducts = [
+  { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, category: "Men", image: "images/dior-savage.jpg", description: "Fresh spicy fragrance for confident men.", active: true, featured: true },
+  { _id: "2", name: "Chanel Bleu", size: "20ml", price: 300000, category: "Men", image: "images/blue.jpg", description: "Woody aromatic scent with elegance.", active: true, featured: true },
+  { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, category: "Women", image: "images/gucci_bloom.jpg", description: "Floral fragrance for bold women.", active: true, featured: true }
 ];
 
-// ============================
-// MODAL
-// ============================
-
+// Modal setup
 const modal = document.createElement('div');
 modal.className = 'modal';
 modal.innerHTML = `
@@ -26,49 +22,74 @@ modal.innerHTML = `
 document.body.appendChild(modal);
 
 // ============================
-// RENDER PRODUCTS FUNCTION
+// Fetch Products from Backend (fallback for missing products)
+const fetchBackendProducts = async () => {
+  try {
+    const res = await fetch("http://localhost:5000/api/products");
+    return await res.json();
+  } catch (err) {
+    console.error("Failed to fetch backend products:", err);
+    return [];
+  }
+};
+
 // ============================
+// Render Products (Hybrid)
+const renderProducts = async (filterCategory = null) => {
+  let products = [...frontendProducts];
+  const backendProducts = await fetchBackendProducts();
 
-const productGrid = document.getElementById(productGrid');
+  // Merge backend products if they are not already in frontendProducts
+  backendProducts.forEach(bp => {
+    if (!products.some(p => p._id === bp._id)) {
+      products.push(bp);
+    }
+  });
 
-function renderProducts(filterCategory = null) {
-  productGrid.innerHTML = "";
-
-  let filteredProducts = products.filter(p => p.active);
-
+  // Filter active products
+  let filtered = products.filter(p => p.active);
   if (filterCategory) {
-    filteredProducts = filteredProducts.filter(p => p.category.trim().toLowerCase() === filterCategory.trim().toLowerCase());
+    filtered = filtered.filter(p => p.category.trim().toLowerCase() === filterCategory.trim().toLowerCase());
   } else {
-    filteredProducts = filteredProducts.filter(p => p.featured);
+    filtered = filtered.filter(p => p.featured);
   }
 
-  filteredProducts.forEach(product => {
+  // Render products
+  productGrid.innerHTML = "";
+  filtered.forEach(product => {
     const div = document.createElement('div');
     div.className = 'product';
     div.innerHTML = `
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>${product.size} - UGX ${product.price.toLocaleString()}</p>
-      <button class="btn view-btn" data-id="${product.id}">View Product</button>
+      <button class="btn view-btn" data-id="${product._id}">View Product</button>
     `;
     productGrid.appendChild(div);
   });
-}
+};
 
 // Initial load
 renderProducts();
 
 // ============================
-// EVENT DELEGATION FOR VIEW BUTTONS
-// ============================
-
-document.addEventListener('click', function(e) {
+// Modal & Event Delegation
+document.addEventListener('click', async function(e) {
   const btn = e.target.closest('.view-btn');
   if (btn) {
-    const productId = parseInt(btn.dataset.id);
-    const product = products.find(p => p.id === productId);
-
-    if (!productGrid) return;
+    const productId = btn.dataset.id;
+    // Find product in frontend first
+    let product = frontendProducts.find(p => p._id === productId);
+    if (!product) {
+      // Fetch from backend if not found
+      try {
+        const res = await fetch(`http://localhost:5000/api/products/${productId}`);
+        product = await res.json();
+      } catch (err) {
+        console.error("Failed to fetch product details:", err);
+        return;
+      }
+    }
 
     document.getElementById('modalBody').innerHTML = `
       <img src="${product.image}" style="width:100%; border-radius:10px;">
@@ -89,9 +110,7 @@ document.addEventListener('click', function(e) {
 });
 
 // ============================
-// CATEGORY FILTER
-// ============================
-
+// Category Filter
 document.querySelectorAll('[data-category]').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -104,42 +123,4 @@ document.querySelectorAll('[data-category]').forEach(link => {
 document.getElementById('showAll').addEventListener('click', function(e) {
   e.preventDefault();
   renderProducts();
-});
-
-// ============================
-// SEARCH FUNCTIONALITY
-// ============================
-
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
-
-searchInput.addEventListener("input", function() {
-  const query = this.value.toLowerCase();
-  searchResults.innerHTML = "";
-
-  if (!query) {
-    searchResults.style.display = "none";
-    return;
-  }
-
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(query) ||
-    p.brand.toLowerCase().includes(query) ||
-    p.category.toLowerCase().includes(query)
-  );
-
-  filtered.forEach(p => {
-    const div = document.createElement("div");
-    div.innerHTML = `<strong>${p.name}</strong><br><small>${p.brand} • UGX ${p.price.toLocaleString()}</small>`;
-    div.onclick = () => {
-      searchResults.style.display = "none";
-      searchInput.value = "";
-      // Open modal safely
-      const button = document.querySelector(`.view-btn[data-id="${p.id}"]`);
-      if (button) button.click();
-    };
-    searchResults.appendChild(div);
-  });
-
-  searchResults.style.display = filtered.length ? "block" : "none";
 });

@@ -1,39 +1,42 @@
-const products = [
-  {
-    id: 1,
-    name: "Noir Essence",
-    price: "UGX 120,000",
-    image: "images/noir1.jpg",
-    description: "A bold masculine scent with woody and spicy undertones."
-  },
-  {
-    id: 2,
-    name: "Velvet Bloom",
-    price: "UGX 150,000",
-    image: "images/noir2.jpg",
-    description: "A soft feminine fragrance with floral elegance."
-  }
+// productDetails.js
+
+const whatsappNumber = "256743340581";
+const detailContainer = document.getElementById("productDetail");
+const productId = localStorage.getItem("selectedProduct");
+
+// Static frontend products fallback
+const frontendProducts = [
+  { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, image: "images/dior-savage.jpg", description: "Fresh spicy fragrance for confident men." },
+  { _id: "2", name: "Chanel Bleu", size: "20ml", price: 300000, image: "images/blue.jpg", description: "Woody aromatic scent with elegance." },
+  { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, image: "images/gucci_bloom.jpg", description: "Floral fragrance for bold women." }
 ];
 
-const whatsappNumber = "2567XXXXXXXX";
+const loadProduct = async () => {
+  let product = frontendProducts.find(p => p._id === productId);
+  if (!product) {
+    try {
+      const res = await fetch(`http://localhost:5000/api/products/${productId}`);
+      product = await res.json();
+    } catch (err) {
+      console.error("Failed to fetch product details:", err);
+      return;
+    }
+  }
 
-const productId = localStorage.getItem("selectedProduct");
-const product = products.find(p => p.id == productId);
-
-if (product) {
-  const detailContainer = document.getElementById("productDetail");
-
-  detailContainer.innerHTML = `
-    <div class="detail-canvas">
+  if (product) {
+    detailContainer.innerHTML = `
+      <div class="detail-canvas">
         <img src="${product.image}" alt="${product.name}">
         <h2>${product.name}</h2>
-        <p class="price">${product.price}</p>
+        <p class="price">UGX ${product.price.toLocaleString()}</p>
         <p class="description">${product.description}</p>
-
         <a href="https://wa.me/${whatsappNumber}?text=Hello, I want to order ${product.name}" 
            class="order-btn" target="_blank">
            Order on WhatsApp
         </a>
-    </div>
-  `;
-}
+      </div>
+    `;
+  }
+};
+
+if (productId) loadProduct();
