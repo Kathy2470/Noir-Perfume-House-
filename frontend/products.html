@@ -8,39 +8,82 @@
   <link rel="stylesheet" href="css/products.css">
 </head>
 <body>
+
+  <!-----header---->
+  <header class="main-header">
+
+<div class="logo">
+<img src="images/noir_logo.png" alt="Noir Perfume House Logo">
+</div>
+
+<nav class="nav-links">
+
+<a href="#" data-category="Women">Women's Perfume</a>
+<a href="#" data-category="Men">Men's Cologne</a>
+<a href="#" id="showAll">Featured</a>
+
+</nav>
+
+<div class="search-container">
+
+<input type="text" id="searchInput" placeholder="Search perfume, brand, scent...">
+
+<button id="searchBtn">🔍</button>
+
+<div class="search-results" id="searchResults"></div>
+
+</div>
+
+</header>
+
+<!----slider-------->
+<section class="promo-slider">
+
+<div class="slider">
+
+<div class="slide active">
+<img src="images/banners/DoirSav.jpg" alt="Dior Sauvage">
+<div class="banner-text">
+<h2>Dior Sauvage</h2>
+<p>Bold. Fresh. Powerful.</p>
+<a href="#" class="btn">Shop Now</a>
+</div>
+</div>
+
+<div class="slide">
+<img src="images/banners/B_Dchanel.jpg" alt="Chanel Bleu">
+<div class="banner-text">
+<h2>Bleu de Chanel</h2>
+<p>Luxury scent for the modern man</p>
+<a href="#" class="btn">Shop Now</a>
+</div>
+</div>
+
+<div class="slide">
+<img src="images/banners/G_bloom.jpg" alt="Gucci Bloom">
+<div class="banner-text">
+<h2>Gucci Bloom</h2>
+<p>Floral elegance for women</p>
+<a href="#" class="btn">Shop Now</a>
+</div>
+</div>
+
+</div>
+
+<button class="slider-btn prev">&#10094;</button>
+<button class="slider-btn next">&#10095;</button>
+
+</section>
+
+
   <!-- PRODUCTS -->
   <section class="products">
     <h2>Featured Collection</h2>
 
-    <div class="product-canvas">
-
-      <div class="product-card">
-        <img src="images/dior-savage.jpg" alt="Dior Sauvage">
-        <h3>Dior Sauvage</h3>
-        <p>20ml — UGX 280,000</p>
-        <a href="https://wa.me/256743340581?text=I want Dior Sauvage 20ml"
-           class="btn-small" target="_blank">Order</a>
-      </div>
-
-      <div class="product-card">
-        <img src="images/blue.jpg" alt="Chanel Bleu">
-        <h3>Chanel Bleu</h3>
-        <p>20ml — UGX 300,000</p>
-        <a href="https://wa.me/256743340581?text=I want Chanel Bleu 20ml"
-           class="btn-small" target="_blank">Order</a>
-      </div>
-
-      <div class="product-card">
-        <img src="images/gucci_bloom.jpg" alt="Gucci Bloom">
-        <h3>Gucci Bloom</h3>
-        <p>20ml — UGX 260,000</p>
-        <a href="https://wa.me/256743340581?text=I want Gucci Bloom 20ml"
-           class="btn-small" target="_blank">Order</a>
-      </div>
-      
-
+    <div class="products" id="product_chart">
+    <!--check product productDetails.js-->
     </div>
   </section>
-<script src="product_details.js"></script>
-<script src="product.js"></script>
+<script src="productDetails.js"></script>
+<script scr="script.js"></script>
 </body>
