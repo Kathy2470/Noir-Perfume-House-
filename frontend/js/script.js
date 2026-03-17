@@ -1,10 +1,10 @@
 // script.js
 
-const whatsappNumber = "256743340581"; // WhatsApp number
+const whatsappNumber = "256779001347"; // WhatsApp number
 const productGrid = document.getElementById('productGrid');
 
 // Static frontend products (can be updated by frontend team)
-const frontendProducts = [
+const PRODUCTS = [
   { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, category: "Men", image: "images/Dior/doir-savage.jpg", description: "a fresh, spicy, and woody fragrance with a bold and long-lasting scent that commands attention.", active: true, featured: true },
   { _id: "2", name: "Chanel Bleu", size: "20ml", price: 300000, category: "Men", image: "images/chanel/blue.jpg", description: "a fresh, woody, and slightly spicy fragrance that delivers a clean, sophisticated, and versatile scent.", active: true, featured: false },
   { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, category: "Women", image: "images/Gucbloom.jpg", description: "a rich, natural floral fragrance that smells like a fresh garden filled with jasmine and white flowers.", active: true, featured: true },
