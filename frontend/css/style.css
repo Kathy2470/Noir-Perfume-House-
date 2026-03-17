@@ -1,3 +1,5 @@
+/* ================= GLOBAL STYLES ================= */
+
 body {
   margin: 0;
   font-family: 'Georgia', serif;
@@ -5,81 +7,37 @@ body {
   background-color: #fae4cf;
 }
 
-h1, h2, h3 { font-family: 'Georgia', serif; }
+h1, h2, h3 {
+  font-family: 'Georgia', serif;
+  margin: 0;
+}
 
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn,
 #heroOrderBtn {
   display: inline-block;
   padding: 10px 20px;
   background-color: #816241;
   color: gold;
-  text-decoration: none;
   border-radius: 5px;
-  position:relative;
-  top:370px;
-  left:70px;
-  transition: 0.3s;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-#heroOrderBtn:hover{
-transform: scale (1.05)
-}
-{
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #816241;
-  color: gold;
+.btn:hover,
+#heroOrderBtn:hover {
+  transform: scale(1.05);
+  background-color: rgb(182, 249, 250);
+  color: #111;
   text-decoration: none;
-  border-radius: 5px;
-  position:relative;
-  transition: 0.3s;
 }
 
-.btn:hover { background-color: rgb(182, 249, 250); color: #111; size:20% }
-
-.hero {
-  background: url('images/noir_logo.png') center/cover no-repeat;
-  background-color:black;
-  padding-top:0px;
-  padding-bottom: 200px;
-  height:50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: gold;
-}
-
-.hero-content h1 { font-size: 3em; margin-bottom: 10px; }
-.hero-content h2{padding-top:0%;
-position:relative;
-top:-30%;}
-.hero-content p { 
-  font-size: 1.5em; 
-  margin-bottom: 20px; 
-  position: relative; 
-  top:270px;
-  left:120px; }
-
-.products, .seasonal-offers, .testimonials {
-  padding: 50px 10% 20px 10%;
-  text-align: center;
-}
-
-.product-grid, .offer-grid, .testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.product img, .offer img { width: 100%; border-radius: 10px; }
-
-.testimonials .testimonial {
-  background-color: #111;
-  color: gold;
-  padding: 20px;
-  border-radius: 10px;
-}
+/* ================= HEADER ================= */
 
 .main-header {
   display: flex;
@@ -93,15 +51,12 @@ top:-30%;}
   z-index: 1000;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
+.logo img {
+  height: 80px;
+  width: auto;
 }
 
-.logo img {
-  height: 80px;   /* controls size properly */
-  width: auto;    /* keeps proportions */
-}
+/* ================= NAVIGATION ================= */
 
 .nav-links {
   display: flex;
@@ -109,10 +64,8 @@ top:-30%;}
 }
 
 .nav-links a {
-  text-decoration: none;
   color: gold;
   font-size: 0.95rem;
-  transition: 0.3s;
 }
 
 .nav-links a:hover {
@@ -149,7 +102,6 @@ top:-30%;}
   color: #111;
 }
 
-/* Search Dropdown */
 .search-results {
   position: absolute;
   top: 40px;
@@ -173,6 +125,305 @@ top:-30%;}
   background-color: #fae4cf;
 }
 
+/* ================= HERO ================= */
+
+.hero {
+  background: url('../images/noir_logo.png') center/cover no-repeat;
+  background-color: #000;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: gold;
+  padding: 50px 5%;
+}
+
+.hero-content h1 {
+  font-size: 3em;
+  margin-bottom: 5px;
+}
+
+.hero-content p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* ================= PROMO SLIDER ================= */
+
+.promo-slider {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  margin: 0 0;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  display: none;
+  position: relative;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.banner-text h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.banner-text p {
+  margin-bottom: 15px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.products .products-header h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.products .products-header p {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.products .product-filters {
+  margin-bottom: 35px;
+}
+
+.products .product-filters button {
+  padding: 8px 18px;
+  margin: 5px;
+  border: none;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.products .product-filters button:hover {
+  background: #816241;
+}
+
+.products .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+}
+
+.products .product {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.products .product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.products .product img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.products .product-brand {
+  font-size: 14px;
+  color: #777;
+}
+
+.products .product-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.products .product-size {
+  font-size: 14px;
+  color: #555;
+}
+
+.products .product-price {
+  font-weight: bold;
+  color: #816241;
+  margin: 10px 0;
+}
+
+.products .product .btn {
+  padding: 8px 16px;
+  background: #816241;
+  color: white;
+  border-radius: 4px;
+}
+
+.products .product .btn:hover {
+  background: #111;
+}
+
+/* ================= SEASONAL OFFERS ================= */
+
+.seasonal-offers {
+  padding: 60px 10%;
+  text-align: center;
+  background: #fafafa;
+}
+
+.seasonal-offers h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.seasonal-offers .offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.seasonal-offers .offer {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.seasonal-offers .offer:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.seasonal-offers .offer img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.seasonal-offers .offer h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.seasonal-offers .offer p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.seasonal-offers .offer strong {
+  display: block;
+  font-size: 16px;
+  color: #816241;
+  margin-bottom: 15px;
+}
+
+.seasonal-offers .offer .btn {
+  padding: 8px 18px;
+  background: #816241;
+  color: white;
+  border-radius: 5px;
+}
+
+.seasonal-offers .offer .btn:hover {
+  background: #111;
+}
+
+.seasonal-offers .offer-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #816241;
+  color: white;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+/* ================= TESTIMONIALS ================= */
+
+.testimonials .testimonial {
+  background-color: #111;
+  color: gold;
+  padding: 20px;
+  margin-top:15px;
+  margin-bottom:5px;
+  gap: 15px;
+  border-radius: 10px;
+  width:50%;
+  justify-content: center;
+  text-align: center;
+  
+}
+
+.testimonial-grid{
+  align-items: center;
+  margin-left: 30%;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+/* ================= MODAL ================= */
+
 .modal {
   display: none;
   position: fixed;
@@ -184,8 +435,8 @@ top:-30%;}
   z-index: 2000;
 }
 
-.model.active{
-  display:flex;
+.modal.active {
+  display: flex;
 }
 
 .modal-content {
@@ -205,22 +456,101 @@ top:-30%;}
   top: 10px;
   cursor: pointer;
   font-size: 28px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
-.close:hover{
-  color:red;
+.close:hover {
+  color: red;
 }
 
-.model{
-  backdrop-filter: blur(5px);
+/* ================= FOOTER ================= */
+
+.footer {
+  background: #111;
+  color: #eee;
+  padding: 50px 10% 20px;
+  margin-top: 60px;
 }
 
-footer {
-  padding: 30px 20px;
-  background-color: #111;
-  color: gold;
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer-brand h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.footer-links h4,
+.footer-socials h4 {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.footer-links ul,
+.footer-socials ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li,
+.footer-socials li {
+  margin-bottom: 8px;
+}
+
+.footer a {
+  color: #bbb;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  color: #816241;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 15px;
   text-align: center;
+  font-size: 13px;
+  color: #888;
 }
-footer input { padding: 10px; margin-right: 10px; border-radius: 5px; border: none; }
-footer button { padding: 10px 20px; border: none; border-radius: 5px; background-color: gold; color: #111; cursor: pointer; }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+  .hero-content h1 { font-size: 2.5em; }
+  .hero-content p { font-size: 1.3em; }
+  .products .product-grid { grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); }
+  .seasonal-offers .offer-grid { grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .search-container { width: 100%; justify-content: center; }
+  .hero-content h1 { font-size: 2em; }
+  .hero-content p { font-size: 1.1em; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 1.5em; }
+  .hero-content p { font-size: 1em; }
+  .products .product-grid { grid-template-columns: 1fr; }
+  .seasonal-offers .offer-grid { grid-template-columns: 1fr; }
+  .nav-links { flex-direction: column; gap: 10px; }
+}

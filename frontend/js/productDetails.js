@@ -6,9 +6,9 @@ const productId = localStorage.getItem("selectedProduct");
 
 // Static frontend products fallback
 const frontendProducts = [
-  { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, image: "images/dior-savage.jpg", description: "Fresh spicy fragrance for confident men." },
+  { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, image: "images/DiorSavage(1).jpg", description: "Fresh spicy fragrance for confident men." },
   { _id: "2", name: "Chanel Bleu", size: "20ml", price: 300000, image: "images/blue.jpg", description: "Woody aromatic scent with elegance." },
-  { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, image: "images/gucci_bloom.jpg", description: "Floral fragrance for bold women." }
+  { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, image: "images/guccibloom.jpg", description: "Floral fragrance for bold women." }
 ];
 
 const loadProduct = async () => {

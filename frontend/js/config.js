@@ -6,7 +6,7 @@ const featuredProducts = [
     name: "Dior Sauvage",
     price: 280000,
     size: "20ml",
-    image: "images/doir-savage.jpg",
+    image: "images/DiorSavage(1).jpg",
     description: "Fresh spicy fragrance for confident men.",
     category: "Men",
     active: true,
