@@ -5,73 +5,13 @@ const productGrid = document.getElementById('productGrid');
 
 // Static frontend products (can be updated by frontend team)
 const frontendProducts = [
-  { _id: "1", 
-    name: "Dior Sauvage", 
-    size: "20ml", 
-    price: 280000, 
-    category: "Men", 
-    image: "images/Dior/doir-savage.jpg", 
-    description: "a fresh, spicy, and woody fragrance with a bold and long-lasting scent that commands attention.", 
-    active: true, 
-    featured: true },
-
-  { _id: "2", 
-    name: "Chanel Bleu", 
-    size: "20ml", 
-    price: 300000, 
-    category: "Men", 
-    image: "images/chanel/blue.jpg", 
-    description: "a fresh, woody, and slightly spicy fragrance that delivers a clean, sophisticated, and versatile scent.", 
-    active: true, 
-    featured: false },
-
-  { _id: "3", 
-    name: "Gucci Bloom", 
-    size: "20ml", 
-    price: 260000, 
-    category: "Women", 
-    image: "images/Gucbloom.jpg", 
-    description: "a rich, natural floral fragrance that smells like a fresh garden filled with jasmine and white flowers.", 
-    active: true, 
-    featured: true },
-
-  { _id: "4",
-     name: "Eternity", 
-     size: "20ml", 
-     price: 280000, 
-     category: "Men", 
-     image: "images/Eternity.jpg", 
-     description: "a fresh, clean, and woody fragrance with citrus and herbal notes, perfect for a timeless and sophisticated everyday scent.", 
-     active: true, 
-     featured: true },
-
-  { _id: "5", 
-    name: "Eros Blue", 
-    size: "20ml", price: 300000, 
-    category: "Men", image: "images/eros/eros.jpg", 
-    description: "a fresh yet sweet and woody fragrance that mixes minty citrus with warm vanilla for a bold, seductive scent.", 
-    active: true, 
-    featured: false},
-
-  { _id: "6", 
-    name: "Eros Flame", 
-    size: "20ml", 
-    price: 260000, 
-    category: "men", 
-    image: "images/eros/eros_flame.jpg", 
-    description: "spicy-sweet fragrance blending citrus freshness with warm vanilla and woods for a bold, passionate scent.", 
-    active: true, 
-    featured: true },
-
-  { _id: "7", 
-    name: "Bvlgari", 
-    size: "20ml", 
-    price: 260000, 
-    category: "men", 
-    image: "images/bvlgari/bvlgari.jpg", 
-    description: "oceanic fragrance that blends citrus, sea notes, and warm woods to create a clean and masculine scent.", 
-    active: true, 
-    featured: false }
+  { _id: "1", name: "Dior Sauvage", size: "20ml", price: 280000, category: "Men", image: "images/Dior/doir-savage.jpg", description: "a fresh, spicy, and woody fragrance with a bold and long-lasting scent that commands attention.", active: true, featured: true },
+  { _id: "2", name: "Chanel Bleu", size: "20ml", price: 300000, category: "Men", image: "images/chanel/blue.jpg", description: "a fresh, woody, and slightly spicy fragrance that delivers a clean, sophisticated, and versatile scent.", active: true, featured: false },
+  { _id: "3", name: "Gucci Bloom", size: "20ml", price: 260000, category: "Women", image: "images/Gucbloom.jpg", description: "a rich, natural floral fragrance that smells like a fresh garden filled with jasmine and white flowers.", active: true, featured: true },
+  { _id: "4", name: "Eternity", size: "20ml", price: 280000, category: "Men", image: "images/Eternity.jpg", description: "a fresh, clean, and woody fragrance with citrus and herbal notes, perfect for a timeless and sophisticated everyday scent.", active: true, featured: true },
+  { _id: "5", name: "Eros Blue", size: "20ml", price: 300000, category: "Men", image: "images/eros/eros.jpg", description: "a fresh yet sweet and woody fragrance that mixes minty citrus with warm vanilla for a bold, seductive scent.", active: true, featured: false},
+  { _id: "6", name: "Eros Flame", size: "20ml", price: 260000, category: "men", image: "images/eros/eros_flame.jpg", description: "spicy-sweet fragrance blending citrus freshness with warm vanilla and woods for a bold, passionate scent.", active: true, featured: true },
+  { _id: "7", name: "Bvlgari", size: "20ml", price: 260000, category: "men", image: "images/bvlgari/bvlgari.jpg", description: "oceanic fragrance that blends citrus, sea notes, and warm woods to create a clean and masculine scent.", active: true, featured: false }
  
 ];
 
@@ -101,7 +41,7 @@ const fetchBackendProducts = async () => {
 // ============================
 // Render Products (Hybrid)
 const renderProducts = async (filterCategory = null) => {
-  let products = [...frontendProducts];
+  let products = [...PRODUCTS];
   const backendProducts = await fetchBackendProducts();
 
   // Merge backend products if they are not already in frontendProducts
@@ -144,7 +84,7 @@ document.addEventListener('click', async function(e) {
   if (btn) {
     const productId = btn.dataset.id;
     // Find product in frontend first
-    let product = frontendProducts.find(p => p._id === productId);
+    let product = PRODUCTS.find(p => p._id === productId);
     if (!product) {
       // Fetch from backend if not found
       try {
